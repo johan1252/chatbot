@@ -1,0 +1,8 @@
+Messenger Token:
+my_voice_is_my_password_verify_me
+
+Facebook developer link:
+https://developers.facebook.com/apps
+
+FB App Token:
+EAAidYoZBZCnusBAJZB0P8sCZAes4TZBfUOdQkEvtqbTUZAssSukLpccaqTPUqbkiWQwCQBMLMoVNBZARSC6E83ZCSZABlJRN5F3sx292LqgK3W5p996Cvi2JfN7a7A7XK1kEpZBRU59gZBFqFcFZBd3MiR6nJarCSd7gEm0pL9URusQadgZDZD
