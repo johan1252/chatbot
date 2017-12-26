@@ -38,6 +38,7 @@ function handleMessage(sender, question) {
 	console.log(entities)
     if (!intent) {
       // use app data, or a previous context to decide how to fallback
+		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
     }
     switch (intent.value) {
