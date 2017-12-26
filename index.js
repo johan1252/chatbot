@@ -49,7 +49,7 @@ function handleMessage(sender, question) {
         break;
       default:
         console.log(`🤖  ${intent.value}`);
-		sendTextMessage(sender, "${intent.value}");
+		sendTextMessage(sender, `${intent.value}`);
         break;
     }
   });
