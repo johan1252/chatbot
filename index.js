@@ -32,7 +32,7 @@ function firstEntity(entities, name) {
     entities[name][0];
 }
 
-function handleMessage(question) {
+function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
 	console.log(entities)
@@ -49,7 +49,7 @@ function handleMessage(question) {
         break;
       default:
         console.log(`🤖  ${intent.value}`);
-		sendTextMessage("${intent.value}");
+		sendTextMessage(sender, "${intent.value}");
         break;
     }
   });
@@ -120,7 +120,7 @@ app.post('/webhook/', function (req, res) {
           } else if (text) {
             // We received a text message
 
-			handleMessage(text);
+			handleMessage(sender, text);
           }
 		
 		
