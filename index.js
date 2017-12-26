@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
     	    sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    continue
         }
-        if (event.referrals) {
+        if (event.referral) {
     	    let text = JSON.stringify(event.referrals)
     	    sendTextMessage(sender, "Referral received: "+text.substring(0, 200), token)
     	    continue
