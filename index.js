@@ -39,6 +39,7 @@ const firstEntity = (entities, entity) => {
 function handleMessage(question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
+	console.log(entities)
     if (!intent) {
       // use app data, or a previous context to decide how to fallback
       return;
