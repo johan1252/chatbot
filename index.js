@@ -24,6 +24,18 @@ const WIT_TOKEN = process.env.WIT_TOKEN || "OUR5UL7GNDX26OMGVKF2UN2767A3ODKO";
 // ----------------------------------------------------------------------------
 // Wit.ai bot specific code
 
+const firstEntityValue = (entities, entity) => {
+  const val = entities && entities[entity] &&
+    Array.isArray(entities[entity]) &&
+    entities[entity].length > 0 &&
+    entities[entity][0].value
+  ;
+  if (!val) {
+    return null;
+  }
+  return typeof val === 'object' ? val.value : val;
+};
+
 function handleMessage(question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
