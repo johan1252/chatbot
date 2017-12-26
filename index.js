@@ -41,14 +41,26 @@ function handleMessage(sender, question) {
       return;
     }
     switch (intent.value) {
-      case 'appt_make':
-        console.log('🤖 > Okay, making an appointment');
-        break;
-      case 'appt_show':
-        console.log('🤖 > Okay, showing appointments');
-        break;
+	  case 'description_get':
+		sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University. \
+		  He has interests in exploring opportunities related to cloud computing, high-level application development, \
+		  open-source software, and DevOps.");
+		  break;
+	  case 'from_get':
+		  sendTextMessage(sender, "Johan was originally born in the Netherlands. In 2001, Johan's family immigrated to \
+		  Canada to pursue a dairy farming operation.");
+      	  break;
+	  case 'name_meaning':
+		  sendTextMessage(sender, "Pronouned \"YO-hahn\", the name Johan means \"God is gracious\" when translated from Hebrew.");
+          break;
+      case 'job_experience':
+		  sendTextMessage(sender, "Outside of Johan's personal projects, Hackathon projects, and academic achievments, Johan has gained \
+		  a essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
+		  sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
+		  feature, creating mutliple automated test suites, and performing performance analysis contributing to major simulator performance enhancements.");
+          break;
       default:
-        console.log(`🤖  ${intent.value}`);
+        console.log(`DEBUG: Unknown intent:${intent.value}`);
 		sendTextMessage(sender, `${intent.value}`);
         break;
     }
@@ -103,11 +115,14 @@ app.post('/webhook/', function (req, res) {
   		    sendGenericMessage(sender)
   		    continue
   	    }
-		if (textIn === 'Dirk') {
+		else if (textIn === 'Dirk') {
 			sendTextMessage(sender, "Dirk is one of the best brothers around.")
 			continue
 		}
-  	    sendTextMessage(sender, "Text received, echo: " + textIn.substring(0, 200))
+		else {
+		  //General case send to AI
+			
+  	      //sendTextMessage(sender, "Text received, echo: " + textIn.substring(0, 200))
 
           // We retrieve the message content
           const {text, attachments} = event.message;
@@ -123,7 +138,7 @@ app.post('/webhook/', function (req, res) {
 			handleMessage(sender, text);
           }
 		
-		
+	  	}
       }
 
     }
