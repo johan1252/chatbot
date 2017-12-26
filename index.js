@@ -19,7 +19,7 @@ try {
 }
 
 // Wit.ai parameters
-const WIT_TOKEN = process.env.WIT_TOKEN;
+const WIT_TOKEN = process.env.WIT_TOKEN || "OUR5UL7GNDX26OMGVKF2UN2767A3ODKO";
 
 // ----------------------------------------------------------------------------
 // Wit.ai bot specific code
@@ -121,16 +121,16 @@ app.post('/webhook/', function (req, res) {
     	    continue
         }
       if (event.message && event.message.text) {
-  	    let text = event.message.text
-  	    if (text === 'Generic') {
+  	    let textIn = event.message.text
+  	    if (textIn === 'Generic') {
   		    sendGenericMessage(sender)
   		    continue
   	    }
-		if (text === 'Dirk') {
+		if (textIn === 'Dirk') {
 			sendTextMessage(sender, "Dirk is one of the best brothers around.")
 			continue
 		}
-  	    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+  	    sendTextMessage(sender, "Text received, echo: " + textIn.substring(0, 200))
 		
           // We retrieve the user's current session, or create one if it doesn't exist
           // This is needed for our bot to figure out the conversation history
