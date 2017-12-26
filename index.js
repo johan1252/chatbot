@@ -49,6 +49,7 @@ function handleMessage(question) {
         break;
       default:
         console.log(`🤖  ${intent.value}`);
+		sendTextMessage("${intent.value}");
         break;
     }
   });
