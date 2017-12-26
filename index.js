@@ -31,9 +31,16 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
-	  if (event.message.text) {
-		sendTextMessage(sender, "Text received, echo: " + event.message.text.substring(0, 200))
-	  }
+        if (event.postback) {
+    	    let text = JSON.stringify(event.postback)
+    	    sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+    	    continue
+        }
+        if (event.referrals) {
+    	    let text = JSON.stringify(event.referrals)
+    	    sendTextMessage(sender, "Referral received: "+text.substring(0, 200), token)
+    	    continue
+        }
       if (event.message && event.message.text) {
   	    let text = event.message.text
   	    if (text === 'Generic') {
@@ -42,16 +49,7 @@ app.post('/webhook/', function (req, res) {
   	    }
   	    sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
-      if (event.postback) {
-  	    let text = JSON.stringify(event.postback)
-  	    sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-  	    continue
-      }
-      if (event.referrals) {
-  	    let text = JSON.stringify(event.referrals)
-  	    sendTextMessage(sender, "Referral received: "+text.substring(0, 200), token)
-  	    continue
-      }
+
     }
     res.sendStatus(200)
   })
