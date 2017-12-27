@@ -44,7 +44,8 @@ function handleMessage(sender, question) {
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
     }
-	if (job_type.value) {
+	
+	if (job_type && job_type.value) {
 		if (state === "experience") {
 			switch (job_type.value) {
 	  		  case 'ciena':
