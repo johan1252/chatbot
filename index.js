@@ -39,7 +39,7 @@ function handleMessage(sender, question) {
     const intent = firstEntity(entities, 'intent');
 	const job_type = firstEntity(entities, 'job_type');
 	console.log(entities)
-    if (!intent) {
+    if (!intent && !job_type) {
       // use app data, or a previous context to decide how to fallback
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
