@@ -32,6 +32,8 @@ function firstEntity(entities, name) {
     entities[name][0];
 }
 
+let state = null;
+
 function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
@@ -41,30 +43,47 @@ function handleMessage(sender, question) {
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
     }
-    switch (intent.value) {
-	  case 'description_get':
-		sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University. \
-		  He has interests in exploring opportunities related to cloud computing, high-level application development, \
-		  open-source software, and DevOps.");
-		  break;
-	  case 'from_get':
-		  sendTextMessage(sender, "Johan was originally born in the Netherlands. In 2001, Johan's family immigrated to \
-		  Canada to pursue a dairy farming operation.");
-      	  break;
-	  case 'name_meaning':
-		  sendTextMessage(sender, "Pronouned \"YO-hahn\", the name Johan means \"God is gracious\" when translated from Hebrew.");
-          break;
-      case 'job_experience':
-		  sendTextMessage(sender, "Outside of Johan's personal projects, Hackathon projects, and academic achievments, Johan has gained \
-		  a essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
-		  sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
-		  feature, creating mutliple automated test suites, and performing performance analysis contributing to major simulator performance enhancements.");
-          break;
-      default:
-        console.log(`DEBUG: Unknown intent:${intent.value}`);
-		sendTextMessage(sender, `${intent.value}`);
-        break;
-    }
+	if (job_type.value) {
+		if (state === "experience") {
+			switch (job_type.value) {
+	  		  case 'ciena':
+  			  	sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
+  			  	feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
+	  			break;
+	  	      default:
+	  	        console.log(`DEBUG: Unknown Job Type:${job_type.value}`);
+	  			sendTextMessage(sender, `${job_type.value}`);
+	  	        break;
+			}
+		}
+	} else {
+	    switch (intent.value) {
+		  case 'description_get':
+			state = "desc";
+			sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University. \
+			  He has interests in exploring opportunities related to cloud computing, high-level application development, \
+			  open-source software, and DevOps.");
+			  break;
+		  case 'from_get':
+			  state = "from";
+			  sendTextMessage(sender, "Johan was originally born in the Netherlands. In 2001, Johan's family immigrated to \
+			  Canada to pursue a dairy farming operation.");
+	      	  break;
+		  case 'name_meaning':
+			  state = "meaning";
+			  sendTextMessage(sender, "Pronouned \"YO-hahn\", the name Johan means \"God is gracious\" when translated from Hebrew.");
+	          break;
+	      case 'job_experience':
+			  state = "experience";
+			  sendTextMessage(sender, "Outside of Johan's personal projects, Hackathon projects, and academic achievments, Johan has gained \
+			  essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
+	          break;
+	      default:
+	        console.log(`DEBUG: Unknown intent:${intent.value}`);
+			sendTextMessage(sender, `${intent.value}`);
+	        break;
+	    }
+	}
   });
 }
 
