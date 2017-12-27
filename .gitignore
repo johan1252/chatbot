@@ -1,0 +1,5 @@
+# MAC DS Store files
+.DS_STORE
+
+# Private files
+*_private.*

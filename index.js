@@ -46,7 +46,7 @@ function handleMessage(sender, question) {
     }
 	
 	if (job_type && job_type.value) {
-		if (state === "experience") {
+		//if (state === "experience") {
 			switch (job_type.value) {
 	  		  case 'ciena':
   			  	sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
@@ -57,7 +57,10 @@ function handleMessage(sender, question) {
 	  			sendTextMessage(sender, `${job_type.value}`);
 	  	        break;
 			}
-		}
+			/*} else {
+	        console.log(`DEBUG: Job type provided outside of job experience block: ${job_type.value}`);
+			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
+		} */
 	} else {
 	    switch (intent.value) {
 		  case 'description_get':
