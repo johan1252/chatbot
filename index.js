@@ -77,6 +77,7 @@ function handleMessage(sender, question) {
 			  state = "experience";
 			  sendTextMessage(sender, "Outside of Johan's personal projects, Hackathon projects, and academic achievments, Johan has gained \
 			  essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
+			  sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc.");
 	          break;
 	      default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
