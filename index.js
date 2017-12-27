@@ -44,14 +44,30 @@ function handleMessage(sender, question) {
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
     }
-	
-	if (job_type && job_type.value) {
+	if (bye && bye.value) {
+		state = "goodbye";
+		sendTextMessage(sender, "Thanks for letting me talk about Johan's experiences.");
+		sendTextMessage(sender, "If you have any other questions feel free to message me again or contact Johan at <j.cornelissen@queensu.ca>.")
+	} else if (job_type && job_type.value) {
 		//if (state === "experience") {
 			switch (job_type.value) {
 	  		  case 'ciena':
   			  	sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
-  			  	feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
+				  feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
 	  			break;
+  		      case 'project_manager':
+			  	sendTextMessage(sender, "As a 4th year student at Queen's, Johan is a project manager for 2 first year engineering student teams. \
+				  The two teams are responsible for creating a shift log generator application for a community client. \
+				  As the project manager, Johan is responsible for advising and mentoring the students, as well as working in partnership with the client and a Queen's faculty advisor.");
+  			    break;
+			  case 'teaching_assistant':
+			  	sendTextMessage(sender, "As an upper year student in the Electrical and Computer Engineering department, Johan was a teaching assistant for ELEC271 in both 3rd and 4th year. \
+				  Johan was responsible for assisting students with laboratory experiments related to using VHDL for programming a Altera Nios II processor.");
+  			    break;
+		      case 'photo_manager':
+		  	    sendTextMessage(sender, "Having been a photography team member in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
+				  During this role, Johan managed a team of 6 photographers developing a strong leadership background as well as essential written and verbal communications skills.");
+			    break;
 	  	      default:
 	  	        console.log(`DEBUG: Unknown Job Type:${job_type.value}`);
 	  			sendTextMessage(sender, `${job_type.value}`);
@@ -63,6 +79,15 @@ function handleMessage(sender, question) {
 		} */
 	} else {
 	    switch (intent.value) {
+	      case 'greeting_resp':
+			state = "greeting";
+			sendTextMessage(sender, "That's great!, I am doing well myself.");
+			sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started learning about Johan.")
+			  break;	
+		  case 'greeting':
+  			state = "greeting";
+  			sendTextMessage(sender, "Hi there, how are you?");
+  			  break;
 		  case 'description_get':
 			state = "desc";
 			sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University. \
@@ -84,6 +109,14 @@ function handleMessage(sender, question) {
 			  essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
 			  sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc.");
 	          break;
+		  case 'project_experience':
+			  state = "projects";
+			  sendTextMessage(sender, "Johan has had the oppertunity to work on multiple projects both during school and during his personal time.");
+			  sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
+			  D-Flipflop timing diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental, \
+			  a CPU Design Project for a complete VHDL implementation of a RISC style processor, and \
+			  an Autonomous Arduino Robot that competed in a Autonomous Basketball Competition.");
+			  sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc.");
 	      default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `${intent.value}`);
