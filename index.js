@@ -149,11 +149,16 @@ function handleMessage(sender, question) {
 			  setTimeout(function(){ sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
 			  D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental 🏠, \
 			  \"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
-			  \"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 100);
-			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 200);
+			  \"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 200);
+			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 300);
 	      	  break;
-		  //Education experience
-		  
+		  case 'education_experience':
+			  state = "education";
+			  sendTextMessage(sender, "After attending high school in the small town of Russell, Ontario, Johan started university at Queen's University in Kingston. \
+			  When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering for his bachelors degree.");
+			  setTimeout(function(){ sendTextMessage(sender, "During his time at Queen's Johan received the Excellence Entrance Scholarship and the Donovan Brown Scholarship in Applied Science."); }, 200);
+			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate from his bachelors in April of 2018."); }, 300);
+	      	  break;
 		  default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
