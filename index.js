@@ -159,6 +159,11 @@ function handleMessage(sender, question) {
 			  setTimeout(function(){ sendTextMessage(sender, "During his time at Queen's Johan received the Excellence Entrance Scholarship and the Donovan Brown Scholarship in Applied Science."); }, 200);
 			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate from his bachelors in April of 2018."); }, 300);
 	      	  break;
+		  case 'hackathon_experience':
+			  state = "hackathon";
+			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solution to real world problems is what Johan likes best about hackathons. \
+			  Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
+	      	  break;
 		  default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
