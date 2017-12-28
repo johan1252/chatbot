@@ -206,7 +206,7 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
-    	    sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+    	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
     	    continue
         }
         if (event.referral) {
@@ -221,6 +221,7 @@ app.post('/webhook/', function (req, res) {
   			//Don't react to chatbot's own messages.
   			continue;
   		}
+		/*
   	    if (textIn === 'Generic') {
   		    sendGenericMessage(sender)
   		    continue
@@ -229,6 +230,7 @@ app.post('/webhook/', function (req, res) {
 			sendTextMessage(sender, "Dirk is one of the best brothers around.")
 			continue
 		}
+		*/
 		else {
 		  //General case send to AI
           // We retrieve the message content
