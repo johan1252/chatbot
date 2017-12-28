@@ -41,7 +41,7 @@ function handleMessage(sender, question) {
 	const bye = firstEntity(entities, 'bye');
 	const project_type = firstEntity(entities, 'project_type');
 	
-	//console.log(entities)
+	console.log(entities)
     if (!intent && !job_type && !project_type && !bye) {
       // use app data, or a previous context to decide how to fallback
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
@@ -190,11 +190,11 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
-	console.log(messaging_events)
+	//console.log(messaging_events)
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
-		if (sender === "313985559088215"){
+		if (event.message.is_echo){
 			//Don't react to chatbot's own messages.
 			continue;
 		}
