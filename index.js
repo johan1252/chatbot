@@ -52,11 +52,11 @@ function handleMessage(sender, question) {
 		//if (state === "experience") {
 			switch (job_type.value) {
 	  		  case 'ciena':
-  			  	sendTextMessage(sender, "At Ciena, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
+  			  	sendTextMessage(sender, "At Ciena💼, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
 				  feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
 	  			break;
   		      case 'project_manager':
-			  	sendTextMessage(sender, "As a 4th year student at Queen's, Johan is a project manager for 2 first year engineering student teams. \
+			  	sendTextMessage(sender, "As a 4th year student at Queen's🎓, Johan is a project manager for 2 first year engineering student teams. \
 				  The two teams are responsible for creating a shift log generator application for a community client. \
 				  As the project manager, Johan is responsible for advising and mentoring the students, as well as working in partnership with the client and a Queen's faculty advisor.");
   			    break;
@@ -65,7 +65,7 @@ function handleMessage(sender, question) {
 				  Johan was responsible for assisting students with laboratory experiments related to using VHDL for programming a Altera Nios II processor.");
   			    break;
 		      case 'photo_manager':
-		  	    sendTextMessage(sender, "Having been a photography team member in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
+		  	    sendTextMessage(sender, "Having been a photography team member📷 in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
 				  During this role, Johan managed a team of 6 photographers developing a strong leadership background as well as essential written and verbal communications skills.");
 			    break;
 	  	      default:
@@ -81,13 +81,17 @@ function handleMessage(sender, question) {
 	    switch (intent.value) {
 	      case 'greeting_resp':
 			state = "greeting";
-			sendTextMessage(sender, "That's great!, I am doing well myself.");
+			sendTextMessage(sender, "That's great!, I am doing well myself😃.");
 			sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started learning about Johan.")
 			  break;	
 		  case 'greeting':
   			state = "greeting";
   			sendTextMessage(sender, "Hi there, how are you?");
   			  break;
+		  case 'whats_up':
+			state = "whatsup";
+  			sendTextMessage(sender, "I am doing great😀, how about yourself?");
+  			  break;  
 		  case 'description_get':
 			state = "desc";
 			sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University. \
