@@ -196,7 +196,7 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
 		if (sender === "313985559088215"){
 			//Don't react to chatbot's own messages.
-			//return;
+			return;
 		}
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
