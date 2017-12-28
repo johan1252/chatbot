@@ -19,7 +19,7 @@ try {
 }
 
 // Wit.ai parameters
-const WIT_TOKEN = process.env.WIT_TOKEN || "OUR5UL7GNDX26OMGVKF2UN2767A3ODKO";
+const WIT_TOKEN = process.env.WIT_TOKEN;
 
 // ----------------------------------------------------------------------------
 // Wit.ai bot specific code
@@ -161,7 +161,7 @@ function handleMessage(sender, question) {
 	      	  break;
 		  case 'hackathon_experience':
 			  state = "hackathon";
-			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solution to real world problems is what Johan likes best about hackathons. \
+			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solutions to real world problems is what Johan likes best about hackathons. \
 			  Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
 	      	  break;
 		  default:
