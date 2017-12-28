@@ -39,7 +39,7 @@ function handleMessage(sender, question) {
     const intent = firstEntity(entities, 'intent');
 	const job_type = firstEntity(entities, 'job_type');
 	const bye = firstEntity(entities, 'bye');
-	const project_type = firstEntity(project_type);
+	const project_type = firstEntity(entities, 'project_type');
 	
 	console.log(entities)
     if (!intent && !job_type && !project_type && !bye) {
