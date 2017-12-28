@@ -48,7 +48,7 @@ function handleMessage(sender, question) {
 	if (bye && bye.value) {
 		state = "goodbye";
 		sendTextMessage(sender, "Thanks for letting me talk about Johan's experiences.");
-		setTimeout(sendTextMessage(sender, "If you have any other questions feel free to message me again or contact Johan at <j.cornelissen@queensu.ca>."), 100);
+		setTimeout(function(){ sendTextMessage(sender, "If you have any other questions feel free to message me again or contact Johan at <j.cornelissen@queensu.ca>."); }, 100);
 	} else if (job_type && job_type.value) {
 		//if (state === "experience") {
 			switch (job_type.value) {
@@ -83,7 +83,7 @@ function handleMessage(sender, question) {
 	      case 'greeting_resp':
 			state = "greeting";
 			sendTextMessage(sender, "That's great!, I am doing well myself 😃.");
-			setTimeout(sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started learning about Johan."), 100);
+			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started learning about Johan."); }, 100);
 			  break;	
 		  case 'greeting':
   			state = "greeting";
@@ -112,16 +112,16 @@ function handleMessage(sender, question) {
 			  state = "experience";
 			  sendTextMessage(sender, "Outside of Johan's personal projects, Hackathon projects, and academic achievments, Johan has gained \
 			  essential computer engineering experience during his 16 month internship at Ciena in Ottawa.");
-			  setTimeout(sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc."), 100);
+			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc.") }, 100);
 	          break;
 		  case 'project_experience':
 			  state = "projects";
 			  sendTextMessage(sender, "Johan has had the oppertunity to work on multiple projects both during school and during his personal time.");
-			  setTimeout(sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
+			  setTimeout(function(){ sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
 			  D-Flipflop timing diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental, \
 			  a CPU Design Project for a complete VHDL implementation of a RISC style processor, and \
-			  an Autonomous Arduino Robot that competed in a Autonomous Basketball Competition."), 100);
-			  setTimeout(sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."), 100);
+			  an Autonomous Arduino Robot that competed in a Autonomous Basketball Competition."); }, 100);
+			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 100);
 	      default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `${intent.value}`);
@@ -170,7 +170,7 @@ app.post('/webhook/', function (req, res) {
         if (event.referral) {
     	    let text = JSON.stringify(event.referral)
     	    sendTextMessage(sender, "Hi! I am Johan's personal chatbot, please ask me any questions related to Johan's personal experiences.")
-			sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started.")
+			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
     	    continue
         }
       if (event.message && event.message.text) {
