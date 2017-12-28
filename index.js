@@ -41,7 +41,7 @@ function handleMessage(sender, question) {
 	const bye = firstEntity(entities, 'bye');
 	const project_type = firstEntity(entities, 'project_type');
 	
-	console.log(entities)
+	//console.log(entities)
     if (!intent && !job_type && !project_type && !bye) {
       // use app data, or a previous context to decide how to fallback
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
@@ -150,7 +150,7 @@ function handleMessage(sender, question) {
 			  D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental 🏠, \
 			  \"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
 			  \"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 100);
-			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 100);
+			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 200);
 	      default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
@@ -224,6 +224,7 @@ app.post('/webhook/', function (req, res) {
             .catch(console.error);
           } else if (text) {
             // We received a text message
+			console.log("Handling message: " + text);
 			handleMessage(sender, text);
           }
 		
