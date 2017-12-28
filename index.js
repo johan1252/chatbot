@@ -38,6 +38,7 @@ function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
 	const job_type = firstEntity(entities, 'job_type');
+	const bye = firstEntity(entities, 'bye');
 	console.log(entities)
     if (!intent && !job_type) {
       // use app data, or a previous context to decide how to fallback
