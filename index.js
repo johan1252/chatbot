@@ -194,10 +194,6 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
-		if (event.message.is_echo){
-			//Don't react to chatbot's own messages.
-			continue;
-		}
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
     	    sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
@@ -211,6 +207,10 @@ app.post('/webhook/', function (req, res) {
         }
       if (event.message && event.message.text) {
   	    let textIn = event.message.text
+  		if (event.message.is_echo){
+  			//Don't react to chatbot's own messages.
+  			continue;
+  		}
   	    if (textIn === 'Generic') {
   		    sendGenericMessage(sender)
   		    continue
