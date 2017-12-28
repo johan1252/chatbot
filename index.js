@@ -151,7 +151,7 @@ function handleMessage(sender, question) {
 			  \"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
 			  \"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 100);
 			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 200);
-	      
+	      	  break;
 		  //Education experience
 		  
 		  default:
