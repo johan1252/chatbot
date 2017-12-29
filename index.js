@@ -55,12 +55,12 @@ function handleMessage(sender, question) {
 		switch (project_type.value) {
   		  case 'QBnB':
 		  	sendTextMessage(sender, "As part of a 3rd year databases course, Johan helped design a HTML/PHP based web application with a MySQL database for short-term housing rental. \
-			  The project can be found at https://github.com/johan1252/QBnB.");
+The project can be found at https://github.com/johan1252/QBnB.");
 			//Could use a generic message instead so it's a button link.
   			break;
 	      case 'CPU Design Project':
 		  	sendTextMessage(sender, "In a group of 3 students, Johan designed, implemented and verified a simple RISC processor on an Altera DE0 board. \
-			  VHDL hardware programming language and Altera Quartus II software was used to design the data path and control units in a systematic approach.");
+VHDL hardware programming language and Altera Quartus II software was used to design the data path and control units in a systematic approach.");
   			setTimeout(function(){ sendTextMessage(sender, "The project can be found at https://github.com/johan1252/CPUDesignProject."); }, 100);
 		    break;
 		  case 'Autonomous Arduino Robot':
@@ -69,7 +69,7 @@ function handleMessage(sender, question) {
 		    break;
 	      case 'D-FlipFlop Calculator':
 	  	    sendTextMessage(sender, "Created a interactive javascript web application to assist students and the interested public in verifying D-Flipflop timing diagrams.\
-			  Interest in the project was sparked through Johan's work as a teaching assistant for ELEC271 - Digital Systems.");
+Interest in the project was sparked through Johan's work as a teaching assistant for ELEC271 - Digital Systems.");
   			setTimeout(function(){ sendTextMessage(sender, "The web application can be used at http://dffcalculator.johancornelissen.com."); }, 100);  
 		    break;
   	      default:
@@ -82,20 +82,20 @@ function handleMessage(sender, question) {
 			switch (job_type.value) {
 	  		  case 'ciena':
   			  	sendTextMessage(sender, "At Ciena 💼, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
-				  feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
+feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
 	  			break;
   		      case 'project_manager':
 			  	sendTextMessage(sender, "As a 4th year student at Queen's 🎓, Johan is a project manager for 2 first year engineering student teams. \
-				  The two teams are responsible for creating a shift log generator application for a community client 👩🏻‍💼. \
-				  As the project manager, Johan is responsible for advising and mentoring the students 👩🏽‍🎓👨🏻‍🎓, as well as working in partnership with the client and a Queen's faculty advisor.");
+The two teams are responsible for creating a shift log generator application for a community client 👩🏻‍💼. \
+As the project manager, Johan is responsible for advising and mentoring the students 👩🏽‍🎓👨🏻‍🎓, as well as working in partnership with the client and a Queen's faculty advisor.");
   			    break;
 			  case 'teaching_assistant':
 			  	sendTextMessage(sender, "As an upper year student in the Electrical and Computer Engineering department, Johan was a teaching assistant for ELEC271 in both 3rd and 4th year. \
-				  Johan was responsible for assisting students with laboratory experiments related to using VHDL for programming a Altera Nios II processor 🖥.");
+Johan was responsible for assisting students with laboratory experiments related to using VHDL for programming a Altera Nios II processor 🖥.");
   			    break;
 		      case 'photo_manager':
 		  	    sendTextMessage(sender, "Having been a photography team member 📷 in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
-				  During this role, Johan managed a team of 6 photographers developing a strong leadership background as well as essential written and verbal communications skills.");
+During this role, Johan managed a team of 6 photographers developing a strong leadership background as well as essential written and verbal communications skills.");
 			    break;
 	  	      default:
 	  	        console.log(`DEBUG: Unknown Job Type:${job_type.value}`);
@@ -124,14 +124,14 @@ function handleMessage(sender, question) {
 		  case 'description_get':
 			state = "desc";
 			sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University 🏫. \
-			  He has interests in exploring opportunities related to cloud computing ☁️, high-level application development, \
-			  open-source software, and DevOps 🖥.");
+He has interests in exploring opportunities related to cloud computing ☁️, high-level application development, \
+open-source software, and DevOps 🖥.");
 			setTimeout(function(){ sendTextMessage(sender, "Feel free to ask about Johan's education, work experience or personal projects for more details."); }, 100);
 			  break;
 		  case 'from_get':
 			  state = "from";
 			  sendTextMessage(sender, "Johan was originally born in the Netherlands 🇳🇱. In 2001, Johan's family immigrated to \
-			  Canada 🇨🇦 to pursue a dairy farming operation.");
+Canada 🇨🇦 to pursue a dairy farming operation.");
 	      	  break;
 		  case 'name_meaning':
 			  state = "meaning";
@@ -140,22 +140,22 @@ function handleMessage(sender, question) {
 	      case 'job_experience':
 			  state = "experience";
 			  sendTextMessage(sender, "Outside of Johan's personal projects 🖥, Hackathon projects 👫, and academic achievements 🏫, Johan has gained \
-			  essential computer engineering experience during his 16 month internship at Ciena in Ottawa 👨‍💻.");
+essential computer engineering experience during his 16 month internship at Ciena in Ottawa 👨‍💻.");
 			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc.") }, 100);
 	          break;
 		  case 'project_experience':
 			  state = "projects";
 			  sendTextMessage(sender, "Johan has had the opportunity to work on multiple projects both during school 🎓 and during his personal time 🖥.");
 			  setTimeout(function(){ sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
-			  D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental 🏠, \
-			  \"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
-			  \"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 200);
+D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental 🏠, \
+\"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
+\"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 200);
 			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 300);
 	      	  break;
 		  case 'education_experience':
 			  state = "education";
 			  sendTextMessage(sender, "After attending high school in the small town of Russell, Ontario, Johan started university at Queen's University in Kingston. \
-			  When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering for his bachelors degree.");
+When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering for his bachelors degree.");
 			  setTimeout(function(){ sendTextMessage(sender, "During his time at Queen's Johan received the Excellence Entrance Scholarship and the Donovan Brown Scholarship in Applied Science."); }, 200);
 			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate from his bachelors in April of 2018."); }, 300);
 	      	  break;
@@ -207,6 +207,8 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
     	    let text = JSON.stringify(event.postback)
     	    //sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+    	    sendTextMessage(sender, "Hello! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
+			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
     	    continue
         }
         if (event.referral) {
