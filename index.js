@@ -213,7 +213,7 @@ app.post('/webhook/', function (req, res) {
         }
         if (event.referral) {
     	    let text = JSON.stringify(event.referral)
-    	    sendTextMessage(sender, "Hi! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
+    	    sendTextMessage(sender, "Welcome back! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
 			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
     	    continue
         }
