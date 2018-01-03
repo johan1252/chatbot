@@ -40,9 +40,10 @@ function handleMessage(sender, question) {
 	const job_type = firstEntity(entities, 'job_type');
 	const bye = firstEntity(entities, 'bye');
 	const project_type = firstEntity(entities, 'project_type');
+	const hackathon_type = firstEntity(entities, 'hackathon_type');
 	
 	console.log(entities)
-    if (!intent && !job_type && !project_type && !bye) {
+    if (!intent && !job_type && !project_type && !bye && !hackathon_type) {
       // use app data, or a previous context to decide how to fallback
 		sendTextMessage(sender, "Im sorry, I didn't fully understand what you are asking, please try again.");
       return;
@@ -51,6 +52,23 @@ function handleMessage(sender, question) {
 		state = "goodbye";
 		sendTextMessage(sender, "Thanks for letting me talk about Johan's experiences.");
 		setTimeout(function(){ sendTextMessage(sender, "If you have any other questions feel free to message me again 😃 or contact Johan at <j.cornelissen@queensu.ca>."); }, 100);
+	} else if (hackathon_type && hackathon_type.value) {
+		switch (hackathon_type.value) {
+  		  case 'Hack Western 4':
+		  	sendTextMessage(sender, "At Hack Western in 2017, Johan created a hosted Amazon Alexa application for a hands-free weather-to-text service using Amazon Lambda, Twilio and The Weather Network’s API.");
+  			break;
+	      case 'CS Games 2017':
+		  	sendTextMessage(sender, "At CS Games 2017, Johan participated in AI (Python), Relay Programming (Python, Java), Web Development (PHP, HTML), and Debugging (10 languages) competitions as part of the Queen's team.");
+		    break;
+		  case 'Local Hack Day':
+		  	sendTextMessage(sender, "At GitHub's Local Hack Day 2017 Johan created a JavaScript web app to bring awareness to the gender 👫 gap in STEM 🔬 related fields through \
+the use of a photo booth 📷 application that collects user demographic information using facial recognition.");
+			break;
+  	      default:
+  	        console.log(`DEBUG: Unknown Hackathon Type:${hackathon_type.value}`);
+  			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
+  	        break;
+		}
 	} else if (project_type && project_type.value) {
 		switch (project_type.value) {
   		  case 'QBnB':
@@ -120,12 +138,33 @@ During this role, Johan managed a team of 6 photographers developing a strong le
 		  case 'whats_up':
 			state = "whatsup";
   			sendTextMessage(sender, "I am doing great 😀, how about yourself?");
-  			  break;  
+  			  break; 
+		  case 'hobbies':
+			state = "hobbies";
+  			sendTextMessage(sender, "Johan's hobbies include working on personal projects 🖥, rock climbing 🧗‍♂️, and photography 📷.");
+		    setTimeout(function(){ sendTextMessage(sender, "For more details on Johan's personal projects, ask \"What are some of Johan's personal projects?\"") }, 100);
+            break;   
+		  case 'strength_weakness':
+  			state = "strength_weakness";
+    	    sendTextMessage(sender, "Like any human being, Johan has both strengths and weaknesses. \
+Johan is often applauded for his strong work ethic, having grown up on a family farm 🐄, as well as his desire to understand problems conceptually 🤔.");
+			setTimeout(function(){ sendTextMessage(sender, "A weakness that Johan continues to work on is his ability to work on multiple projects at one time 🤹‍♂️, as is often the case in industry."); }, 100);
+			break;   
+		case 'skills_get':
+			state = "skills";
+			sendTextMessage(sender, "Johan has strong communication and organization skills 📢, and has made use of the software life-cycle throughout development \
+of software using C, C++, Java, Python, and Bash programming languages 🖥.");
+			break; 
+		  case 'interested_in':
+			state = 'interested';
+		    sendTextMessage(sender, "Johan has interests in exploring opportunities related to cloud computing ☁️, high-level application development, \
+open-source software, and DevOps 🖥.");
+			setTimeout(function(){ sendTextMessage(sender, "Feel free to ask about Johan's education, work experience or personal projects for details on his qualifications."); }, 100);
+			break;   
 		  case 'description_get':
 			state = "desc";
 			sendTextMessage(sender, "Johan is a 4th year Computer Engineering student at Queen’s University 🏫. \
-He has interests in exploring opportunities related to cloud computing ☁️, high-level application development, \
-open-source software, and DevOps 🖥.");
+He can often be found coding personal projects, replacing friends computer hard drives, or rock climbing.");
 			setTimeout(function(){ sendTextMessage(sender, "Feel free to ask about Johan's education, work experience or personal projects for more details."); }, 100);
 			  break;
 		  case 'from_get':
@@ -137,10 +176,17 @@ Canada 🇨🇦 to pursue a dairy farming operation.");
 			  state = "meaning";
 			  sendTextMessage(sender, "Pronouned \"YO-hahn\", the name Johan means \"God is gracious\" when translated from Hebrew.");
 	          break;
+		  case 'hire_why':
+			  state = "why_hire";
+			  sendTextMessage(sender, "Johan is a great candidate for any computer/software engineering related position due to his continued passion and initiative in every opportunity he embarks on. \
+He has been able to achieve a high acedemic standing, and gained extensive software development experience throughout his 16 month internship.");
+			  setTimeout(function(){ sendTextMessage(sender, "Feel free to ask about Johan's education, work experience or personal projects for more details."); }, 100);
+			  break;
 	      case 'job_experience':
 			  state = "experience";
-			  sendTextMessage(sender, "Outside of Johan's personal projects 🖥, Hackathon projects 👫, and academic achievements 🏫, Johan has gained \
-essential computer engineering experience during his 16 month internship at Ciena in Ottawa 👨‍💻.");
+			  sendTextMessage(sender, "Outside of Johan's personal projects 🖥, and academic achievements 🏫, Johan has gained \
+essential computer engineering experience during his 16 month internship at Ciena in Ottawa 👨‍💻. Additionally, Johan gained essential soft skills through positions such as \
+project manager, photography manager 📷, and teaching assistant 👨‍🏫.");
 			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Ciena?\" etc.") }, 100);
 	          break;
 		  case 'project_experience':
@@ -154,14 +200,14 @@ D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web applica
 	      	  break;
 		  case 'education_experience':
 			  state = "education";
-			  sendTextMessage(sender, "After attending high school in the small town of Russell, Ontario, Johan started university at Queen's University in Kingston. \
-When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering for his bachelors degree.");
+			  sendTextMessage(sender, "After attending high school in the small town of Russell, Ontario 🏡, Johan started university at Queen's University in Kingston 🏫. \
+When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering 💻 for his bachelors degree.");
 			  setTimeout(function(){ sendTextMessage(sender, "During his time at Queen's Johan received the Excellence Entrance Scholarship and the Donovan Brown Scholarship in Applied Science."); }, 200);
-			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate from his bachelors in April of 2018."); }, 300);
+			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate in April of 2018."); }, 300);
 	      	  break;
 		  case 'hackathon_experience':
 			  state = "hackathon";
-			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solutions to real world problems is what Johan likes best about hackathons. \
+			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solutions to real world 🌎 problems is what Johan likes best about hackathons. \
 			  Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
 	      	  break;
 		  default:
