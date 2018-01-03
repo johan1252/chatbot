@@ -34,6 +34,8 @@ function firstEntity(entities, name) {
 
 let state = null;
 
+// Function that handles all the text requests and sends them off to the wit.ai service.
+// If the request is familiar to wit.ai, the matched intention or entity will determine the reply message.
 function handleMessage(sender, question) {
   return wit.message(question).then(({entities}) => {
     const intent = firstEntity(entities, 'intent');
@@ -148,7 +150,7 @@ During this role, Johan managed a team of 6 photographers developing a strong le
   			state = "strength_weakness";
     	    sendTextMessage(sender, "Like any human being, Johan has both strengths and weaknesses. \
 Johan is often applauded for his strong work ethic, having grown up on a family farm 🐄, as well as his desire to understand problems conceptually 🤔.");
-			setTimeout(function(){ sendTextMessage(sender, "A weakness that Johan continues to work on is his ability to work on multiple projects at one time 🤹‍♂️, as is often the case in industry."); }, 100);
+			setTimeout(function(){ sendTextMessage(sender, "A weakness that Johan continues to work on is his ability to work on multiple projects at one time 🤹‍♂️."); }, 100);
 			break;   
 		case 'skills_get':
 			state = "skills";
@@ -191,11 +193,10 @@ project manager, photography manager 📷, and teaching assistant 👨‍🏫.")
 	          break;
 		  case 'project_experience':
 			  state = "projects";
-			  sendTextMessage(sender, "Johan has had the opportunity to work on multiple projects both during school 🎓 and during his personal time 🖥.");
-			  setTimeout(function(){ sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
+			  sendTextMessage(sender, "Some of the projects Johan has worked on include, \"D-FlipFlop Calculator\" - A web application that verifies \
 D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web application for short term housing rental 🏠, \
 \"CPU Design Project\" - a complete VHDL implementation of a RISC style processor 🖥, and \
-\"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition."); }, 200);
+\"Autonomous Arduino Robot\" - an autonomous Arduino robot that competed in a Basketball 🏀 competition.");
 			  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about QBnB?\" etc."); }, 300);
 	      	  break;
 		  case 'education_experience':
@@ -209,7 +210,8 @@ When attending Queen's university Johan completed the first year of the general 
 			  state = "hackathon";
 			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solutions to real world 🌎 problems is what Johan likes best about hackathons. \
 			  Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
-	      	  break;
+	      	  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Hack Western 4?\" etc."); }, 200);
+			  break;
 		  default:
 	        console.log(`DEBUG: Unknown intent:${intent.value}`);
 			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
@@ -244,6 +246,7 @@ app.get('/webhook/', function (req, res) {
 	res.send('Error, wrong token')
 })
 
+// The webhook, this is where all the Facebook Messenger requests will be coming in.
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
 	//console.log(messaging_events)
@@ -258,6 +261,7 @@ app.post('/webhook/', function (req, res) {
     	    continue
         }
         if (event.referral) {
+			// If a user has come back for a second time
     	    let text = JSON.stringify(event.referral)
     	    sendTextMessage(sender, "Welcome back! I am Johan's personal chatbot 🤖, please ask me any questions related to Johan's personal experiences.")
 			setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
@@ -268,18 +272,7 @@ app.post('/webhook/', function (req, res) {
   		if (event.message.is_echo){
   			//Don't react to chatbot's own messages.
   			continue;
-  		}
-		/*
-  	    if (textIn === 'Generic') {
-  		    sendGenericMessage(sender)
-  		    continue
-  	    }
-		else if (textIn === 'Dirk') {
-			sendTextMessage(sender, "Dirk is one of the best brothers around.")
-			continue
-		}
-		*/
-		else {
+  		} else {
 		  //General case send to AI
           // We retrieve the message content
           const {text, attachments} = event.message;
@@ -306,6 +299,8 @@ app.post('/webhook/', function (req, res) {
 
 const token = process.env.FB_PAGE_ACCESS_TOKEN
 
+// Generic function to send a reply to the user in Facebook Messenger.
+// Where sender can be found in the incomming messages "sender.id" field.
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
@@ -325,6 +320,9 @@ function sendTextMessage(sender, text) {
     })
 }
 
+// Example function of how to send a Facebook "Generic" message.
+// These messages can contain pictures in frames known as "cards", as well as links and other post-back requests.
+// This functionality is currently not used.
 function sendGenericMessage(sender) {
     let messageData = {
 	    "attachment": {
