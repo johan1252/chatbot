@@ -2,7 +2,7 @@
 Personal Facebook Messenger Chatbot created using wit.ai Artificial Intelligence software, Heroku Node.Js server, and Facebook's developer console.
 Chatbot can be accessed through my personal website at http://johancornelissen.com.
 
-##Intention
+## Intention
 This chatbot was designed to autonomously assist recruiters viewing my personal resume website.
 It serves to answer basic questions about my experience, hobbies, personal projects, autonomously without my involvement.
 By using wit.ai open-source artificial intelligence software the javascript code can detect the user's intentions with confidence.
