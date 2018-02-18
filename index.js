@@ -98,34 +98,29 @@ Interest in the project was sparked through Johan's work as a teaching assistant
   	        break;
 		}
 	} else if (job_type && job_type.value) {
-		//if (state === "experience") {
-			switch (job_type.value) {
-	  		  case 'ciena':
-  			  	sendTextMessage(sender, "At Ciena 💼, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
+		switch (job_type.value) {
+  		  case 'ciena':
+		  	sendTextMessage(sender, "At Ciena 💼, Johan was part of the Platform tools team, contributing to two releases of a new embeddeded software \
 feature, creating mutliple automated test suites, and performing performance analysis contributing to major product simulator performance enhancements.");
-	  			break;
-  		      case 'project_manager':
-			  	sendTextMessage(sender, "As a 4th year student at Queen's 🎓, Johan is a project manager for 2 first year engineering student teams. \
+  			break;
+	      case 'project_manager':
+		  	sendTextMessage(sender, "As a 4th year student at Queen's 🎓, Johan is a project manager for 2 first year engineering student teams. \
 The two teams are responsible for creating a shift log generator application for a community client 👩🏻‍💼. \
 As the project manager, Johan is responsible for advising and mentoring the students 👩🏽‍🎓👨🏻‍🎓, as well as working in partnership with the client and a Queen's faculty advisor.");
-  			    break;
-			  case 'teaching_assistant':
-			  	sendTextMessage(sender, "As an upper year student in the Electrical and Computer Engineering department, Johan was a teaching assistant for ELEC271 in both 3rd and 4th year. \
+		    break;
+		  case 'teaching_assistant':
+		  	sendTextMessage(sender, "As an upper year student in the Electrical and Computer Engineering department, Johan was a teaching assistant for ELEC271 in both 3rd and 4th year. \
 Johan was responsible for assisting students with laboratory experiments related to using VHDL for programming a Altera Nios II processor 🖥.");
-  			    break;
-		      case 'photo_manager':
-		  	    sendTextMessage(sender, "Having been a photography team member 📷 in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
+		    break;
+	      case 'photo_manager':
+	  	    sendTextMessage(sender, "Having been a photography team member 📷 in the past for the Engineering Society at Queen's, Johan was hired on to be the photography manager for the society in the 2015-2016 school year. \
 During this role, Johan managed a team of 6 photographers developing a strong leadership background as well as essential written and verbal communications skills.");
-			    break;
-	  	      default:
-	  	        console.log(`DEBUG: Unknown Job Type:${job_type.value}`);
-	  			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
-	  	        break;
-			}
-			/*} else {
-	        console.log(`DEBUG: Job type provided outside of job experience block: ${job_type.value}`);
-			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
-		} */
+		    break;
+  	      default:
+  	        console.log(`DEBUG: Unknown Job Type:${job_type.value}`);
+  			sendTextMessage(sender, `Im sorry, I didn't fully understand what you are asking, please try again.`);
+  	        break;
+		}
 	} else {
 	    switch (intent.value) {
 	      case 'greeting_resp':
@@ -178,6 +173,23 @@ Canada 🇨🇦 to pursue a dairy farming operation.");
 			  state = "meaning";
 			  sendTextMessage(sender, "Pronouned \"YO-hahn\", the name Johan means \"God is gracious\" when translated from Hebrew.");
 	          break;
+		  case 'age_get':
+			  state = "age";
+			  sendTextMessage(sender, "Johan is 22 years old and will have completed his bachelors degree in April 2018.");
+	          break;
+		  case 'resume_get':
+			  state = "resume";
+			  sendTextMessage(sender, "Johan's most up-to-date resume can be found at https://johan1252.github.io/Resume_Cornelissen_Johan.pdf.");
+	          break;
+		  case 'contact_information_get':
+			  state = "contact_info";
+			  sendTextMessage(sender, "Johan can be contacted at anytime by emailing <j.cornelissen@queensu.ca>, he looks forward to hearing from you!");
+	          break;  
+		  case 'usage_get':
+			  state = "usage";
+			  sendTextMessage(sender, "You can ask me any questions related to Johan's education, job experience, hackathons, personal projects and contact information.");
+			  setTimeout(function(){ sendTextMessage(sender, "Type a phrase like \"What can you tell me about Johan?\" to get started."); }, 100);
+			  break;  
 		  case 'hire_why':
 			  state = "why_hire";
 			  sendTextMessage(sender, "Johan is a great candidate for any computer/software engineering related position due to his continued passion and initiative in every opportunity he embarks on. \
@@ -202,14 +214,14 @@ D-Flipflop timing 🕐 diagrams interactively, \"QBnB\" - a HTML/PHP web applica
 		  case 'education_experience':
 			  state = "education";
 			  sendTextMessage(sender, "After attending high school in the small town of Russell, Ontario 🏡, Johan started university at Queen's University in Kingston 🏫. \
-When attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering 💻 for his bachelors degree.");
+While attending Queen's university Johan completed the first year of the general undergraduate engineering program and choose to specialize in Computer Engineering 💻 for his bachelors degree.");
 			  setTimeout(function(){ sendTextMessage(sender, "During his time at Queen's Johan received the Excellence Entrance Scholarship and the Donovan Brown Scholarship in Applied Science."); }, 200);
 			  setTimeout(function(){ sendTextMessage(sender, "Johan is anticipated to graduate in April of 2018."); }, 300);
 	      	  break;
 		  case 'hackathon_experience':
 			  state = "hackathon";
 			  sendTextMessage(sender, "Having the oppertunity to work with other creative students to create unique solutions to real world 🌎 problems is what Johan likes best about hackathons. \
-			  Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
+Some of the hackathon's Johan has attended in the last year include \"Queen's Local Hack day\", \"Hack Western 4\", and \"CsGames 2017\".");
 	      	  setTimeout(function(){ sendTextMessage(sender, "For more detail on a specific experience, ask \"Tell me more about Hack Western 4?\" etc."); }, 200);
 			  break;
 		  default:
